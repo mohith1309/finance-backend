@@ -2,24 +2,93 @@
 <html>
 <head>
   <title>Finance Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f6fa;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      background: #2f3640;
+      color: white;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .income { border-top: 5px solid green; }
+    .expense { border-top: 5px solid red; }
+    .net { border-top: 5px solid blue; }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #74b9ff;
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align: center; margin-top: 50px;">
 
-  <h1>Finance Backend Demo 🚀</h1>
+<body>
 
-  <button onclick="getDemo()">Load Demo Data</button>
+  <h1>Finance Dashboard 🚀</h1>
 
-  <h3 id="result"></h3>
+  <div class="container">
+    <button onclick="loadData()">Load Data</button>
+
+    <div class="cards">
+      <div class="card income">
+        <h3>Income</h3>
+        <p id="income">0</p>
+      </div>
+
+      <div class="card expense">
+        <h3>Expense</h3>
+        <p id="expense">0</p>
+      </div>
+
+      <div class="card net">
+        <h3>Net Balance</h3>
+        <p id="net">0</p>
+      </div>
+    </div>
+  </div>
 
   <script>
-    async function getDemo() {
+    async function loadData() {
       const res = await fetch("http://localhost:5000/demo");
       const data = await res.json();
 
-      document.getElementById("result").innerText =
-        "Income: " + data.sample.totalIncome +
-        " | Expense: " + data.sample.totalExpense +
-        " | Net: " + data.sample.net;
+      document.getElementById("income").innerText = data.sample.totalIncome;
+      document.getElementById("expense").innerText = data.sample.totalExpense;
+      document.getElementById("net").innerText = data.sample.net;
     }
   </script>
 
