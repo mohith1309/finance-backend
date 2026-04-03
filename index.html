@@ -58,7 +58,7 @@
 
 <body>
 
-  <h1>Finance Dashboard 🚀</h1>
+  <h1>Finance Dashboard </h1>
 
   <div class="container">
     <button onclick="loadData()">Load Data</button>
@@ -82,15 +82,15 @@
   </div>
 
   <script>
-    async function loadData() {
-      const res = await fetch("http://localhost:5000/demo");
-      const data = await res.json();
+  async function loadData() {
+    const res = await fetch("http://localhost:5000/dashboard/summary");
+    const data = await res.json();
 
-      document.getElementById("income").innerText = data.sample.totalIncome;
-      document.getElementById("expense").innerText = data.sample.totalExpense;
-      document.getElementById("net").innerText = data.sample.net;
-    }
-  </script>
+    document.getElementById("income").innerText = data.totalIncome || 0;
+    document.getElementById("expense").innerText = data.totalExpense || 0;
+    document.getElementById("net").innerText = data.netBalance || 0;
+  }
+</script>
 
 </body>
 </html>
