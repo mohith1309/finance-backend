@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Finance Dashboard</title>
+</head>
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+
+  <h1>Finance Backend Demo 🚀</h1>
+
+  <button onclick="getDemo()">Load Demo Data</button>
+
+  <h3 id="result"></h3>
+
+  <script>
+    async function getDemo() {
+      const res = await fetch("http://localhost:5000/demo");
+      const data = await res.json();
+
+      document.getElementById("result").innerText =
+        "Income: " + data.sample.totalIncome +
+        " | Expense: " + data.sample.totalExpense +
+        " | Net: " + data.sample.net;
+    }
+  </script>
+
+</body>
+</html>
